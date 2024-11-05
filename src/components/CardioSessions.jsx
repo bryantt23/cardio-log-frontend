@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { getSessions, addSession, copySession, toggleSession } from '../service/sessions'
-import MeditationForm from './MeditationForm'
+import CardioForm from './CardioForm'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fasFaStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
 
-function MeditationSessions() {
+function CardioSessions() {
     const [sessions, setSessions] = useState([])
     const [sessionsDisplay, setSessionsDisplay] = useState([])
     const [showOnlyFavorites, setShowOnlyFavorites] = useState(() => JSON.parse(localStorage.getItem('showOnlyFavorites')) || false)
@@ -44,7 +44,7 @@ function MeditationSessions() {
         }
     }
 
-    const copyMeditationSession = async (description, youTubeUrl, length, thumbnailUrl) => {
+    const copyCardioSession = async (description, youTubeUrl, length, thumbnailUrl) => {
         try {
             await copySession(description, youTubeUrl, length, thumbnailUrl)
             notify('Copied session')
@@ -78,9 +78,9 @@ function MeditationSessions() {
     return (
         <div>
             <ToastContainer />
-            <h1 className="meditation-title" ref={topRef}>Meditation Sessions</h1>
+            <h1 className="cardio-title" ref={topRef}>Cardio Sessions</h1>
             <div>
-                <MeditationForm handleAddSession={handleAddSession} />
+                <CardioForm handleAddSession={handleAddSession} />
                 <div className='favorites-section'>
                     <label>
                         <input
@@ -92,7 +92,7 @@ function MeditationSessions() {
                     </label>
                 </div>
 
-                <table className="meditation-table" border="1">
+                <table className="cardio-table" border="1">
                     <thead>
                         <tr>
                             <th></th>
@@ -135,7 +135,7 @@ function MeditationSessions() {
                                 <td>{`${date.toDateString('en-US', dateOptions)} ${date.toLocaleTimeString('en-US', timeOptions)}`}</td>
                                 <td>{getFormattedLength(length)}</td>
                                 <td><button onClick={() => {
-                                    copyMeditationSession(description, youTubeUrl, length, thumbnailUrl)
+                                    copyCardioSession(description, youTubeUrl, length, thumbnailUrl)
                                     scrollToRef()
                                 }}>Copy Session</button></td>
                             </tr>)
@@ -148,4 +148,4 @@ function MeditationSessions() {
     )
 }
 
-export default MeditationSessions
+export default CardioSessions

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function MeditationForm({ handleAddSession }) {
+function CardioForm({ handleAddSession }) {
     const [description, setDescription] = useState("")
     const [length, setLength] = useState("")
 
@@ -28,4 +28,4 @@ function MeditationForm({ handleAddSession }) {
     )
 }
 
-export default MeditationForm
+export default CardioForm

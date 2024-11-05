@@ -1,11 +1,11 @@
 import './App.css'
-import MeditationSessions from './components/MeditationSessions'
+import CardioSessions from './components/CardioSessions'
 
 function App() {
 
   return (
     <>
-      <MeditationSessions />
+      <CardioSessions />
     </>
   )
 }
