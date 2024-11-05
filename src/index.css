@@ -1,0 +1,60 @@
+.meditation-title {
+  text-align: center;
+}
+
+body {
+  font-family: 'Nunito', sans-serif; /* Rounded, friendly font */
+  background-color: #fff; /* White background */
+  color: #333; /* Darker text for better contrast */
+  padding: 20px;
+}
+
+input {
+  margin: 0 7px 0 7px;
+}
+
+input,
+button {
+  font-family: 'Nunito', sans-serif;
+  padding: 8px 12px;
+  border: 2px solid #ccc; /* Light grey border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9; /* Very light grey background */
+  outline: none; /* Removes the default focus outline */
+}
+
+button {
+  cursor: pointer; /* Indicates that it's clickable */
+  background-color: #e0f2fe; /* Light blue background */
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+button:hover {
+  background-color: #bbdefb; /* Slightly darker blue on hover */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px black;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd; /* Light horizontal line between rows */
+}
+
+th {
+  background-color: #bbdefb; /* Blue header */
+}
+
+tr:hover {
+  background-color: #f1f8fe; /* Very light blue on row hover */
+}
+
+.favorites-section {
+  margin: 7px 0 7px;
+}
