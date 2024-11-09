@@ -1,11 +1,11 @@
 import axios from 'axios'
 import iso8601Duration from 'iso8601-duration'
-
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+// import.meta.env.VITE_API_URL || 
+const BASE_URL = 'http://localhost:3000';
 
 export const getSessions = async () => {
     try {
-        const sessions = await axios.get(`${BASE_URL}/meditations`)
+        const sessions = await axios.get(`${BASE_URL}/cardio`)
         return sessions.data
     } catch (error) {
         console.error(error)
@@ -41,7 +41,7 @@ export const addSession = async (description, length) => {
             }
         }
 
-        await axios.post(`${BASE_URL}/meditations`, postBody)
+        await axios.post(`${BASE_URL}/cardio`, postBody)
     } catch (error) {
         console.error(error)
     }
@@ -50,7 +50,7 @@ export const addSession = async (description, length) => {
 export const copySession = async (description, youTubeUrl, length, thumbnailUrl) => {
     try {
         let postBody = { description, youTubeUrl, length, finishTime: Date.now(), thumbnailUrl }
-        await axios.post(`${BASE_URL}/meditations`, postBody)
+        await axios.post(`${BASE_URL}/cardio`, postBody)
     } catch (error) {
         console.error(error)
     }
@@ -58,7 +58,7 @@ export const copySession = async (description, youTubeUrl, length, thumbnailUrl)
 
 export const toggleSession = async (id) => {
     try {
-        const response = await axios.put(`${BASE_URL}/meditations/${id}/toggleFavorite`)
+        const response = await axios.put(`${BASE_URL}/cardio/${id}/toggleFavorite`)
         return response.data
     } catch (error) {
         console.error("Error toggling session:", error);

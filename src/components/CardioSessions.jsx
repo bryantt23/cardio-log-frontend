@@ -16,7 +16,7 @@ function CardioSessions() {
 
     const fetchData = async () => {
         const data = await getSessions()
-        setSessions(data)
+        setSessions(data.sessions)
     }
 
     useEffect(() => {
