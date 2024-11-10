@@ -80,6 +80,7 @@ function CardioSessions() {
         try {
             await addSession(description, length * 60)
             fetchData()
+            scrollToRef()
             notify(`Added session: ${description} for ${getFormattedLength(length)}`)
         } catch (error) {
             console.error("Error adding session:", error)
@@ -111,8 +112,8 @@ function CardioSessions() {
 
     return (
         <div>
-            <h1 className="cardio-title" ref={topRef}>Cardio Sessions</h1>
             <ToastContainer />
+            <h1 className="cardio-title" ref={topRef}>Cardio Sessions</h1>
             <div>
                 {minutesData && <div className="progress-text" style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisWeek / 150 * 100) }}>This week: {minutesData.minutesDoneThisWeek}/150</div>}
                 {minutesData && <div className="progress-text" style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisMonth / 600 * 100) }}>This month: {minutesData.minutesDoneThisMonth}/600</div>}
@@ -128,7 +129,6 @@ function CardioSessions() {
                         Show Only Favorites
                     </label>
                 </div>
-
                 <table className="cardio-table" border="1">
                     <thead>
                         <tr>
