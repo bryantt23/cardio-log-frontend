@@ -80,7 +80,7 @@ function CardioSessions() {
         try {
             await addSession(description, length * 60)
             fetchData()
-            scrollToRef()
+            scrollToTop()
             notify(`Added session: ${description} for ${getFormattedLength(length * 60)}`)
         } catch (error) {
             console.error("Error adding session:", error)
@@ -106,13 +106,13 @@ function CardioSessions() {
         }
     }
 
-    const scrollToRef = () => {
-        topRef.current.scrollIntoView({ behavior: "smooth", block: 'start' })
+    const scrollToTop = () => {
+        topRef.current?.scrollTo({ behavior: "smooth", top: 0 })
     }
 
     return (
-        <div>
-            <h1 className="cardio-title" ref={topRef}>Cardio Sessions</h1>
+        <div ref={topRef} style={{ overflowY: 'auto', height: '100vh' }}>
+            <h1 className="cardio-title">Cardio Sessions</h1>
 
             <div>
                 {minutesData && <div className="progress-text" style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisWeek / 150 * 100) }}>This week: {minutesData.minutesDoneThisWeek}/150</div>}
@@ -177,7 +177,7 @@ function CardioSessions() {
                                 <td>{getFormattedLength(length)}</td>
                                 <td><button onClick={() => {
                                     copyCardioSession(description, youTubeUrl, length, thumbnailUrl)
-                                    scrollToRef()
+                                    scrollToTop()
                                 }}>Copy Session</button></td>
                             </tr>)
                         }
