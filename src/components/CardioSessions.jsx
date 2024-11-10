@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fasFaStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
 
-function getColorFromGradient(value) {
+const getColorFromGradient = (value) => {
     // Ensure value is between 0 and 100
     value = Math.max(0, Math.min(100, value));
 
@@ -29,6 +29,14 @@ function getColorFromGradient(value) {
 
     // Convert to hex and return
     return `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;
+}
+
+const getFormattedLength = (time) => {
+    const minutes = Math.floor(time / 60);
+    const minutesString = minutes === 0 ? '' : `${minutes} minute${minutes === 1 ? "" : "s"}`
+    const seconds = time % 60
+    const secondsString = seconds === 0 ? '' : `${seconds} second${seconds === 1 ? "" : "s"}`
+    return `${minutesString} ${secondsString}`
 }
 
 function CardioSessions() {
@@ -81,7 +89,7 @@ function CardioSessions() {
     const copyCardioSession = async (description, youTubeUrl, length, thumbnailUrl) => {
         try {
             await copySession(description, youTubeUrl, length, thumbnailUrl)
-            notify('Copied session')
+            notify(`Copied session: ${description} for ${getFormattedLength(length)}`)
             fetchData()
         } catch (error) {
             console.error("Error adding session:", error)
@@ -95,14 +103,6 @@ function CardioSessions() {
         } catch (error) {
             console.error("Error toggling session:", error)
         }
-    }
-
-    const getFormattedLength = (time) => {
-        const minutes = Math.floor(time / 60);
-        const minutesString = minutes === 0 ? '' : `${minutes} minute${minutes === 1 ? "" : "s"}`
-        const seconds = time % 60
-        const secondsString = seconds === 0 ? '' : `${seconds} second${seconds === 1 ? "" : "s"}`
-        return `${minutesString} ${secondsString}`
     }
 
     const scrollToRef = () => {
