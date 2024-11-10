@@ -114,8 +114,8 @@ function CardioSessions() {
             <ToastContainer />
             <h1 className="cardio-title" ref={topRef}>Cardio Sessions</h1>
             <div>
-                {minutesData && <div style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisWeek / 150 * 100) }}>This week: {minutesData.minutesDoneThisWeek}/150</div>}
-                {minutesData && <div style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisMonth / 600 * 100) }}>This month: {minutesData.minutesDoneThisMonth}/600</div>}
+                {minutesData && <div className="progress-text" style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisWeek / 150 * 100) }}>This week: {minutesData.minutesDoneThisWeek}/150</div>}
+                {minutesData && <div className="progress-text" style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisMonth / 600 * 100) }}>This month: {minutesData.minutesDoneThisMonth}/600</div>}
 
                 <CardioForm handleAddSession={handleAddSession} cardioOptions={cardioOptions} />
                 <div className='favorites-section'>

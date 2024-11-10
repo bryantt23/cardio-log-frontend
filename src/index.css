@@ -1,11 +1,12 @@
 .cardio-title {
   text-align: center;
+  color: #f0f0f0; /* Light text for dark background */
 }
 
 body {
-  font-family: 'Nunito', sans-serif; /* Rounded, friendly font */
-  background-color: #fff; /* White background */
-  color: #333; /* Darker text for better contrast */
+  font-family: 'Nunito', sans-serif;
+  background-color: #2b2b2b; /* Slate gray background for night theme */
+  color: #e0e0e0; /* Light text for contrast */
   padding: 20px;
 }
 
@@ -17,44 +18,64 @@ input,
 button {
   font-family: 'Nunito', sans-serif;
   padding: 8px 12px;
-  border: 2px solid #ccc; /* Light grey border */
-  border-radius: 8px; /* Rounded corners */
-  background-color: #f9f9f9; /* Very light grey background */
-  outline: none; /* Removes the default focus outline */
+  border: 2px solid #555; /* Darker border for night theme */
+  border-radius: 8px;
+  background-color: #3d3d3d; /* Dark gray input background */
+  color: #e0e0e0; /* Light text */
+  outline: none;
 }
 
 button {
-  cursor: pointer; /* Indicates that it's clickable */
-  background-color: #e0f2fe; /* Light blue background */
-  transition: background-color 0.3s; /* Smooth transition for hover */
+  cursor: pointer;
+  background-color: #4caf50; /* Vibrant green for energy */
+  color: #ffffff; /* White text */
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #bbdefb; /* Slightly darker blue on hover */
+  background-color: #388e3c; /* Darker green on hover */
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 8px;
-  box-shadow: 0 0 0 1px black;
+  box-shadow: 0 0 0 1px #444; /* Dark border shadow */
   overflow: hidden;
 }
 
 th,
 td {
   padding: 12px;
-  border-bottom: 1px solid #ddd; /* Light horizontal line between rows */
+  border-bottom: 1px solid #555; /* Dark line between rows */
+  color: #e0e0e0; /* Light text */
 }
 
 th {
-  background-color: #bbdefb; /* Blue header */
+  background-color: #388e3c; /* Green header for energy */
 }
 
 tr:hover {
-  background-color: #f1f8fe; /* Very light blue on row hover */
+  background-color: #333; /* Slightly lighter gray on row hover */
 }
 
 .favorites-section {
   margin: 7px 0 7px;
+  color: #f0f0f0;
+}
+
+/* Additional styling for the weekly/monthly progress bars */
+.progress-bar {
+  padding: 10px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.progress-text {
+  color: black;
+  padding: 2px;
+}
+
+.description-text {
+  color: black;
 }

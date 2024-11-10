@@ -7,10 +7,10 @@ function CardioForm({ handleAddSession, cardioOptions }) {
 
     return (
         <div>
-            {description}
             <form onSubmit={(e) => handleAddSession(e, description, length)}>
                 <label htmlFor='description'>Description</label>
                 <CreatableSelect
+                    className='description-text'
                     name="description"
                     onChange={selectedOption => { setDescription(selectedOption?.value || "") }}
                     isClearable
