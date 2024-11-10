@@ -7,16 +7,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fasFaStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
 
+function getColorFromGradient(value) {
+    // Ensure value is between 0 and 100
+    value = Math.max(0, Math.min(100, value));
+
+    // Calculate the color in the red-yellow-green gradient
+    let red = 255;
+    let green = Math.round((value / 100) * 255);
+    let blue = 0;
+
+    // For values below 50, we adjust red to transition from red to yellow
+    if (value < 50) {
+        red = 255;
+        green = Math.round((value / 50) * 255);
+    }
+    // For values above 50, we adjust green to transition from yellow to green
+    else {
+        red = Math.round((1 - (value - 50) / 50) * 255);
+        green = 255;
+    }
+
+    // Convert to hex and return
+    return `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;
+}
+
 function CardioSessions() {
     const [sessions, setSessions] = useState([])
     const [sessionsDisplay, setSessionsDisplay] = useState([])
     const [showOnlyFavorites, setShowOnlyFavorites] = useState(() => JSON.parse(localStorage.getItem('showOnlyFavorites')) || false)
+    const [cardioOptions, setCardioOptions] = useState([])
+    const [minutesData, setMinutesData] = useState()
+
     const topRef = useRef(null)
     const notify = (message) => toast(message)
 
     const fetchData = async () => {
-        const data = await getSessions()
-        setSessions(data.sessions)
+        try {
+            const data = await getSessions();
+            setCardioOptions(data.typesOfCardio.map(elem => ({ value: elem, label: elem })));
+            setSessions(data.sessions);
+            const { minutesDoneThisMonth, minutesDoneThisWeek } = data
+            setMinutesData({ minutesDoneThisWeek, minutesDoneThisMonth })
+        } catch (error) {
+            console.error("Error fetching sessions:", error);
+        }
     }
 
     useEffect(() => {
@@ -80,7 +114,10 @@ function CardioSessions() {
             <ToastContainer />
             <h1 className="cardio-title" ref={topRef}>Cardio Sessions</h1>
             <div>
-                <CardioForm handleAddSession={handleAddSession} />
+                {minutesData && <div style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisWeek / 150 * 100) }}>This week: {minutesData.minutesDoneThisWeek}/150</div>}
+                {minutesData && <div style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisMonth / 600 * 100) }}>This month: {minutesData.minutesDoneThisMonth}/600</div>}
+
+                <CardioForm handleAddSession={handleAddSession} cardioOptions={cardioOptions} />
                 <div className='favorites-section'>
                     <label>
                         <input
