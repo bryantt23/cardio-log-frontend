@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
+import CreatableSelect from 'react-select/creatable';
 
-function CardioForm({ handleAddSession }) {
+function CardioForm({ handleAddSession, cardioOptions }) {
     const [description, setDescription] = useState("")
     const [length, setLength] = useState("")
 
     return (
         <div>
+            {description}
             <form onSubmit={(e) => handleAddSession(e, description, length)}>
                 <label htmlFor='description'>Description</label>
-                <input
-                    type="text"
-                    value={description}
+                <CreatableSelect
                     name="description"
-                    onChange={e => setDescription(e.target.value)}
-                ></input>
+                    onChange={selectedOption => { setDescription(selectedOption?.value || "") }}
+                    isClearable
+                    options={cardioOptions}
+                />
                 <label htmlFor='length'>Length</label>
                 <input
                     type="number"
