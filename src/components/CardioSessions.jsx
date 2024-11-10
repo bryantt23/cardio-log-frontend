@@ -81,7 +81,7 @@ function CardioSessions() {
             await addSession(description, length * 60)
             fetchData()
             scrollToRef()
-            notify(`Added session: ${description} for ${getFormattedLength(length)}`)
+            notify(`Added session: ${description} for ${getFormattedLength(length * 60)}`)
         } catch (error) {
             console.error("Error adding session:", error)
         }
@@ -112,7 +112,6 @@ function CardioSessions() {
 
     return (
         <div>
-            <ToastContainer position='top-center' />
             <h1 className="cardio-title" ref={topRef}>Cardio Sessions</h1>
 
             <div>
@@ -130,6 +129,10 @@ function CardioSessions() {
                         Show Only Favorites
                     </label>
                 </div>
+
+                <ToastContainer
+                    position='top-left'
+                />
                 <table className="cardio-table" border="1">
                     <thead>
                         <tr>
