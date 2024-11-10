@@ -112,8 +112,9 @@ function CardioSessions() {
 
     return (
         <div>
+            <ToastContainer position='top-center' />
             <h1 className="cardio-title" ref={topRef}>Cardio Sessions</h1>
-            <ToastContainer />
+
             <div>
                 {minutesData && <div className="progress-text" style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisWeek / 150 * 100) }}>This week: {minutesData.minutesDoneThisWeek}/150</div>}
                 {minutesData && <div className="progress-text" style={{ backgroundColor: getColorFromGradient(minutesData.minutesDoneThisMonth / 600 * 100) }}>This month: {minutesData.minutesDoneThisMonth}/600</div>}
