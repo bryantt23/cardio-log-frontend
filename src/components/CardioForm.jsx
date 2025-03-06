@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CreatableSelect from 'react-select/creatable';
 
 function CardioForm({ handleAddSession, cardioOptions }) {
-    const [description, setDescription] = useState("")
+    const [description, setDescription] = useState("Walking")
     const [length, setLength] = useState("")
 
     return (
