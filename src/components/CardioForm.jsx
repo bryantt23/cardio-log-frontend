@@ -15,6 +15,7 @@ function CardioForm({ handleAddSession, cardioOptions }) {
                     onChange={selectedOption => { setDescription(selectedOption?.value || "") }}
                     isClearable
                     options={cardioOptions}
+                    defaultValue={{ value: 'Walking', label: 'Walking' }}
                 />
                 <label htmlFor='length'>Length</label>
                 <input
