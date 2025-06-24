@@ -36,6 +36,17 @@ button:hover {
   background-color: #388e3c; /* Darker green on hover */
 }
 
+.delete-button {
+  background-color: #7a1f1f;
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #a83232;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
