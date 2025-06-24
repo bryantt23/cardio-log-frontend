@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { getSessions, addSession, copySession, toggleSession } from '../service/sessions'
+import { getSessions, addSession, copySession, toggleSession, deleteSession } from '../service/sessions'
 import CardioForm from './CardioForm'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -58,6 +58,14 @@ function CardioSessions() {
             setMinutesData({ minutesDoneThisWeek, minutesDoneThisMonth })
         } catch (error) {
             console.error("Error fetching sessions:", error);
+        }
+    }
+
+    const deleteCardioSession = async (_id, description, finishTime) => {
+        if (window.confirm(`Delete ${description} on ${finishTime}`)) {
+            await deleteSession(_id)
+            notify(`Deleted: ${description}`)
+            fetchData()
         }
     }
 
@@ -142,6 +150,7 @@ function CardioSessions() {
                             <th>Finish Time</th>
                             <th>Length</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -179,6 +188,10 @@ function CardioSessions() {
                                     copyCardioSession(description, youTubeUrl, length, thumbnailUrl)
                                     scrollToTop()
                                 }}>Copy Session</button></td>
+                                <td><button className='delete-button'
+                                    onClick={() => {
+                                        deleteCardioSession(_id, description, finishTime)
+                                    }}>Delete Session</button></td>
                             </tr>)
                         }
                         )}
